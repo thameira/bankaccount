@@ -9,22 +9,45 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Bem vindo ao banco");
+		System.out.println("\n>>>>>>>>>>>>>>> Sistema Bancário <<<<<<<<<<<<<<<");
 		showDisplayOptions(sc);
 	}
 
 	private static void showDisplayOptions(Scanner sc) {
-		int option = 0;
+		int option = -1;
 		BankService bankService = new BankService();
 		OptionService optionService = new OptionService(bankService, sc);
 
-		do{
-			for (ScreenOptions screenOption : ScreenOptions.values()){
+		do {
+			System.out.println("\n*----------------------------------------------*");
+			System.out.println("*           Escolha a opção desejada           *");
+			System.out.println("*----------------------------------------------*");
+			for (ScreenOptions screenOption : ScreenOptions.values()) {
 				System.out.println(String.format("%d - %s",
 						screenOption.getOption(), screenOption.getOptionDescription()));
 			}
-			option = sc.nextInt();
-			optionService.chooseOption(ScreenOptions.getScreenOption(option));
-		}while(option!=0);
+			System.out.print("\nOpção: ");
+
+			if (sc.hasNextInt()) {
+				option = sc.nextInt();
+				sc.nextLine(); // consumir o Enter
+
+				try {
+					ScreenOptions chosenOption = ScreenOptions.getScreenOption(option);
+					optionService.chooseOption(chosenOption);
+				} catch (IllegalArgumentException e) {
+					System.out.println("Opção inválida, tente novamente!");
+				} catch (RuntimeException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace(); // mostra o erro completo no console
+				}
+
+			} else {
+				System.out.println("Opção inválida, tente novamente!");
+				sc.next(); // descarta o valor inválido
+			}
+		} while (option != 0);
+
+		System.out.println("Seção encerrada!");
 	}
 }

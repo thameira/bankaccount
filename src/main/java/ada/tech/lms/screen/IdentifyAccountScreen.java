@@ -12,8 +12,22 @@ public class IdentifyAccountScreen {
 	public IdentifyAccountScreen(BankService bankService){
 		this.bankService = bankService;
 	}
+
 	public User init(Scanner sc){
-		System.out.println("Informe o cpf da sua conta");
-		return bankService.findUser(sc.next());
+		String cpf;
+		while (true) {
+			System.out.print("Informe o cpf da conta: ");
+			cpf = sc.next();
+
+			// valida se é numérico
+			if (!cpf.matches("\\d+")) {
+				System.out.println("CPF inválido! Digite apenas números.");
+				continue; // volta a pedir
+			}
+			break; // sai do laço se for válido
+		}
+
+		return bankService.findUser(cpf);
 	}
 }
+

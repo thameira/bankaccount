@@ -2,11 +2,12 @@ package ada.tech.lms.screen;
 
 public enum ScreenOptions {
 
-	CREATE_ACCOUNT(1, "Criar uma nova conta"),
-	WITHDRAW(2, "Realizar saque na conta"),
-	DEPOSIT(3, "Realizar deposito na conta"),
-	GET_BALANCE(4,"Ver saldo"),
-	NO_OPTION(0,"Sair da aplicação");
+	CREATE_ACCOUNT(1, "ABERTURA DE CONTA"),
+	WITHDRAW(2, "SAQUE"),
+	DEPOSIT(3, "DEPOSITO"),
+	GET_BALANCE(4,"CONSULTA SALDO"),
+	GET_STATEMENT(5,"EXTRATO"),
+	NO_OPTION(0,"Sair");
 
 	private int option;
 	private String optionDescription;
@@ -15,7 +16,6 @@ public enum ScreenOptions {
 		this.option = option;
 		this.optionDescription = optionDescription;
 	}
-
 
 	public int getOption() {
 		return option;
@@ -26,10 +26,11 @@ public enum ScreenOptions {
 	}
 
 	public static ScreenOptions getScreenOption(int option) {
-		for (ScreenOptions screenOption : ScreenOptions.values()){
-			if(screenOption.getOption() == option)
+		for (ScreenOptions screenOption : ScreenOptions.values()) {
+			if (screenOption.getOption() == option) {
 				return screenOption;
+			}
 		}
-		throw new RuntimeException("There is no selected option");
+		throw new IllegalArgumentException("Opção inválida, digite novamente.");
 	}
 }

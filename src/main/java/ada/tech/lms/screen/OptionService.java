@@ -14,21 +14,28 @@ public class OptionService {
 		this.scanner = scanner;
 	}
 
-	public void chooseOption(ScreenOptions screenOptions){
-		ExecutedOption executedOption=null;
+	public void chooseOption(ScreenOptions screenOptions) {
+		ExecutedOption executedOption = null;
 		var identifyAccountScreen = new IdentifyAccountScreen(bankService);
 
+		try {
+			switch (screenOptions) {
+				case WITHDRAW -> executedOption = new ada.tech.lms.screen.executed.WithdrawExecutedOption(bankService, scanner, identifyAccountScreen.init(scanner));
+				case CREATE_ACCOUNT -> executedOption = new ada.tech.lms.screen.executed.CreateAccountExecutedOption(scanner, bankService);
+				case DEPOSIT -> executedOption = new ada.tech.lms.screen.executed.DepositExecutedOption(bankService, scanner, identifyAccountScreen.init(scanner));
+				case GET_BALANCE -> executedOption = new GetExecutedOption(bankService, identifyAccountScreen.init(scanner));
+				case GET_STATEMENT -> executedOption = new GetStatementExecutedOption(bankService, scanner);
+				default -> System.exit(0);
+			}
 
-		switch (screenOptions){
-			case WITHDRAW -> executedOption = new WithdrawExecutedOption(bankService, scanner, identifyAccountScreen.init(scanner));
-			case CREATE_ACCOUNT -> executedOption = new CreateAccountExecutedOption(bankService, scanner);
-			case DEPOSIT -> executedOption = new DepositExecutedOption(bankService, scanner, identifyAccountScreen.init(scanner));
-			case GET_BALANCE -> executedOption = new GetExecutedOption(bankService, identifyAccountScreen.init(scanner));
+			// Somente executa se uma opção válida foi criada
+			if (executedOption != null) {
+				executedOption.execute();
+			}
 
-			default -> System.exit(0);
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
 		}
-
-		executedOption.execute();
 	}
 
 

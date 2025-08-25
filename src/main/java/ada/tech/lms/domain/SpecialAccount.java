@@ -13,7 +13,7 @@ public class SpecialAccount extends BankAccount {
         if (amount <= balance + limit) {
             balance -= amount;
         } else {
-            throw new IllegalArgumentException("Amount exceeds balance and limit.");
+            throw new IllegalArgumentException("O valor excede o saldo e o limite.");
         }
     }
 

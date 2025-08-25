@@ -1,29 +1,37 @@
-package ada.tech.lms.screen;
+package ada.tech.lms.screen.executed;
 
 import ada.tech.lms.domain.BankAccount;
 import ada.tech.lms.domain.User;
+import ada.tech.lms.screen.ExecutedOption;
 import ada.tech.lms.service.BankService;
+import ada.tech.lms.util.InputUtils;
 
 import java.util.Scanner;
 
 public class WithdrawExecutedOption implements ExecutedOption {
 
-	private BankService bankService;
-	private Scanner scanner;
-	private User userAccount;
-	public WithdrawExecutedOption(BankService bankService, Scanner scanner, User userAccount) {
+	private final BankService bankService;
+	private final Scanner scanner;
+	private final User user;
+
+	public WithdrawExecutedOption(BankService bankService, Scanner scanner, User user) {
 		this.bankService = bankService;
-		this.userAccount = userAccount;
 		this.scanner = scanner;
+		this.user = user;
 	}
 
 	@Override
 	public void execute() {
-		System.out.println("Valor informado para o saque?");
-		var value = scanner.nextDouble();
-		BankAccount account = bankService.findAccountByUser(userAccount);
-		account.getBalance();
+		System.out.println("\n>> SAQUE <<");
+		// valor validado com InputUtils
+		double value = InputUtils.readDouble(scanner, "Valor do saque: ");
+
+		BankAccount account = bankService.findAccountByUser(user);
 		account.withdraw(value);
 
+		bankService.saveTransaction(user.getCpf(), "Saque", value);
+		bankService.saveAccount(account);
+
+		System.out.println("Saque realizado com sucesso.");
 	}
 }

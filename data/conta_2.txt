@@ -1,0 +1,5 @@
+tipo=Especial
+numeroConta=106568
+cpf=2
+saldo=118
+limite=1.000

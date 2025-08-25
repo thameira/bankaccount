@@ -11,7 +11,7 @@ public class SimpleAccount extends BankAccount {
         if (amount <= balance) {
             balance -= amount;
         } else {
-            throw new IllegalArgumentException("Insufficient balance.");
+            throw new IllegalArgumentException("Saldo insuficiente.");
         }
     }
 }

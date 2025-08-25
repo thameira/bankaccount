@@ -1,14 +1,19 @@
-package ada.tech.lms.screen;
+package ada.tech.lms.screen.executed;
 
+import ada.tech.lms.domain.BankAccount;
 import ada.tech.lms.domain.User;
+import ada.tech.lms.screen.ExecutedOption;
 import ada.tech.lms.service.BankService;
+import ada.tech.lms.util.InputUtils;
 
 import java.util.Scanner;
 
 public class DepositExecutedOption implements ExecutedOption {
+
 	private final BankService bankService;
 	private final Scanner scanner;
 	private final User user;
+
 	public DepositExecutedOption(BankService bankService, Scanner scanner, User user) {
 		this.bankService = bankService;
 		this.scanner = scanner;
@@ -17,9 +22,16 @@ public class DepositExecutedOption implements ExecutedOption {
 
 	@Override
 	public void execute() {
-		System.out.println("Qual o valor que deseja depositar?");
-		var value = scanner.nextDouble();
-		bankService.findAccountByUser(user).deposit(value);
-		System.out.println("deposito realizado com sucesso");
+		System.out.println("\n>> DEPOSITO <<");
+		// valor validado com InputUtils
+		double value = InputUtils.readDouble(scanner, "Qual o valor que deseja depositar? ");
+
+		BankAccount account = bankService.findAccountByUser(user);
+		account.deposit(value);
+
+		bankService.saveTransaction(user.getCpf(), "Depósito", value);
+		bankService.saveAccount(account);
+
+		System.out.println("Depósito realizado com sucesso.");
 	}
 }
