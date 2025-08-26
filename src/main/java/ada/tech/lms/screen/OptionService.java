@@ -28,7 +28,6 @@ public class OptionService {
 				default -> System.exit(0);
 			}
 
-			// Somente executa se uma opção válida foi criada
 			if (executedOption != null) {
 				executedOption.execute();
 			}

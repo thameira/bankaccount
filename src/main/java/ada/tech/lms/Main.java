@@ -31,7 +31,7 @@ public class Main {
 
 			if (sc.hasNextInt()) {
 				option = sc.nextInt();
-				sc.nextLine(); // consumir o Enter
+				sc.nextLine();
 
 				try {
 					ScreenOptions chosenOption = ScreenOptions.getScreenOption(option);
@@ -40,12 +40,12 @@ public class Main {
 					System.out.println("Opção inválida, tente novamente!");
 				} catch (RuntimeException e) {
 					System.out.println(e.getMessage());
-					e.printStackTrace(); // mostra o erro completo no console
+					e.printStackTrace();
 				}
 
 			} else {
 				System.out.println("Opção inválida, tente novamente!");
-				sc.next(); // descarta o valor inválido
+				sc.next();
 			}
 		} while (option != 0);
 

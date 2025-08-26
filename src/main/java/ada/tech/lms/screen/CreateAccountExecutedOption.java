@@ -57,7 +57,6 @@ public class CreateAccountExecutedOption implements ExecutedOption {
 		System.out.println("Conta criada com sucesso.\n");
 	}
 
-	// Gera um número de conta com 6 dígitos (mantém zeros à esquerda)
 	private String generateAccountNumber() {
 		StringBuilder sb = new StringBuilder(6);
 		for (int i = 0; i < 6; i++) {

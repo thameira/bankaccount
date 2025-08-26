@@ -1,6 +1,5 @@
 package ada.tech.lms.screen;
 
-import ada.tech.lms.domain.BankAccount;
 import ada.tech.lms.domain.User;
 import ada.tech.lms.service.BankService;
 
@@ -22,9 +21,9 @@ public class IdentifyAccountScreen {
 			// valida se é numérico
 			if (!cpf.matches("\\d+")) {
 				System.out.println("CPF inválido! Digite apenas números.");
-				continue; // volta a pedir
+				continue;
 			}
-			break; // sai do laço se for válido
+			break;
 		}
 
 		return bankService.findUser(cpf);

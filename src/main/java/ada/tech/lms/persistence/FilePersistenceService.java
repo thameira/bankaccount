@@ -27,7 +27,6 @@ public class FilePersistenceService {
             writer.newLine();
             writer.write("nome=" + user.getName());
 
-            //System.out.println("Usuário salvo em: " + new File(filename).getAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar usuário", e);
         }
@@ -54,15 +53,12 @@ public class FilePersistenceService {
                 throw new RuntimeException("Arquivo de usuário incompleto");
             }
 
-            //System.out.println("Usuário carregado de: " + new File(filename).getAbsolutePath());
             return new User(cpfRead, name);
 
         } catch (IOException e) {
             throw new RuntimeException("Erro ao ler usuário", e);
         }
     }
-
-    // ---------------------- Conta ----------------------
 
     public void saveAccount(BankAccount account) {
         File dir = new File(DATA_DIR);
@@ -81,7 +77,6 @@ public class FilePersistenceService {
             writer.write("cpf=" + account.getOwner().getCpf());
             writer.newLine();
 
-            // grava saldo com vírgula
             writer.write("saldo=" + nf.format(account.getBalance()));
             writer.newLine();
 
@@ -91,7 +86,6 @@ public class FilePersistenceService {
                 writer.newLine();
             }
 
-            //System.out.println("Conta salva em: " + new File(filename).getAbsolutePath());
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar conta", e);
         }
@@ -146,7 +140,6 @@ public class FilePersistenceService {
                 account = new SimpleAccount(numeroConta, user, saldo);
             }
 
-            //System.out.println("📂 Conta carregada de: " + new File(filename).getAbsolutePath());
             return account;
 
         } catch (IOException e) {

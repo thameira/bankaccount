@@ -25,7 +25,7 @@ public class WithdrawExecutedOption implements ExecutedOption {
 		System.out.println("\n*----------------------------------------------*");
 		System.out.println("*                     SAQUE                    *");
 		System.out.println("*----------------------------------------------*");
-		// valor validado com InputUtils
+
 		double value = InputUtils.readDouble(scanner, "Valor do saque: ");
 
 		BankAccount account = bankService.findAccountByUser(user);

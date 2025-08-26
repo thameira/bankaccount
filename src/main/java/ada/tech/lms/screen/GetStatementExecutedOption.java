@@ -22,7 +22,7 @@ public class GetStatementExecutedOption implements ExecutedOption {
 
     @Override
     public void execute() {
-        // validação consistente de CPF
+        // validação  de CPF
         String cpf = InputUtils.readCpf(scanner);
 
         User user;
@@ -33,12 +33,6 @@ public class GetStatementExecutedOption implements ExecutedOption {
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             return;
-        }
-
-        // Cálculo do saldo disponível
-        double saldoDisponivel = account.getBalance();
-        if (account instanceof SpecialAccount sa) {
-            saldoDisponivel += sa.getLimit();
         }
 
         // Cabeçalho

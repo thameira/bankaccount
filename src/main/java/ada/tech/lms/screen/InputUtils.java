@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class InputUtils {
 
-    // Lê número double validado
     public static double readDouble(Scanner sc, String message) {
         double value;
         while (true) {
@@ -21,7 +20,6 @@ public class InputUtils {
         return value;
     }
 
-    // Lê CPF apenas numérico (qualquer quantidade de dígitos)
     public static String readCpf(Scanner sc) {
         String cpf;
         while (true) {
@@ -36,7 +34,6 @@ public class InputUtils {
         return cpf;
     }
 
-    // Lê opção de Sim/Não validada
     public static boolean readYesNo(Scanner sc, String message) {
         String opcao;
         while (true) {
