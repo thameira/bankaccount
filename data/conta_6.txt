@@ -1,5 +1,0 @@
-tipo=Especial
-numeroConta=449034
-cpf=6
-saldo=3.000
-limite=6.000

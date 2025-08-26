@@ -1,2 +1,0 @@
-cpf=2
-nome=diogo nunes

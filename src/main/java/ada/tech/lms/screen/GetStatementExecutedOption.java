@@ -42,11 +42,20 @@ public class GetStatementExecutedOption implements ExecutedOption {
         }
 
         // Cabeçalho
-        System.out.println("\n>> EXTRATO <<");
-        System.out.printf("Titular: %s%n", user.getName());
-        System.out.printf("Conta: %s%n", account.getAccountNumber());
-        System.out.printf("Saldo disponível: %.2f%n", saldoDisponivel);
-        System.out.println("-------------------------------------");
+        System.out.println("\n*----------------------------------------------*");
+        System.out.println("*                    EXTRATO                   *");
+        System.out.println("*----------------------------------------------*");
+        System.out.printf("Titular.........: %s%n", user.getName());
+        System.out.printf("Conta...........: %s%n", account.getAccountNumber());
+        System.out.printf("Saldo...........: R$ %.2f%n", account.getBalance());
+
+        if (account instanceof SpecialAccount sa) {
+            System.out.printf("Limite..........: R$ %.2f%n", sa.getLimit());
+            System.out.printf("Saldo disponível: R$ %.2f%n", account.getBalance() + sa.getLimit());
+        }
+
+        System.out.println("*----------------------------------------------*");
+
 
         // Leitura do arquivo de transações
         File file = new File("data/transacoes_" + cpf + ".txt");

@@ -10,14 +10,20 @@ public class SpecialAccount extends BankAccount {
 
     @Override
     public void withdraw(double amount) {
-        if (amount <= balance + limit) {
-            balance -= amount;
-        } else {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Saque deve ser maior que zero.");
+        }
+        if (amount > balance + limit) {
             throw new IllegalArgumentException("O valor excede o saldo e o limite.");
         }
+        balance -= amount;
     }
 
     public double getLimit() {
         return limit;
+    }
+
+    public void setLimit(double limit) {
+        this.limit = limit;
     }
 }

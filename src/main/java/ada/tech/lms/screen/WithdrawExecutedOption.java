@@ -22,14 +22,16 @@ public class WithdrawExecutedOption implements ExecutedOption {
 
 	@Override
 	public void execute() {
-		System.out.println("\n>> SAQUE <<");
+		System.out.println("\n*----------------------------------------------*");
+		System.out.println("*                     SAQUE                    *");
+		System.out.println("*----------------------------------------------*");
 		// valor validado com InputUtils
 		double value = InputUtils.readDouble(scanner, "Valor do saque: ");
 
 		BankAccount account = bankService.findAccountByUser(user);
 		account.withdraw(value);
 
-		bankService.saveTransaction(user.getCpf(), "Saque", value);
+		bankService.saveTransaction(user.getCpf(), "Saque   ", -value);
 		bankService.saveAccount(account);
 
 		System.out.println("Saque realizado com sucesso.");

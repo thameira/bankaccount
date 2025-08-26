@@ -22,9 +22,11 @@ public class DepositExecutedOption implements ExecutedOption {
 
 	@Override
 	public void execute() {
-		System.out.println("\n>> DEPOSITO <<");
+		System.out.println("\n*----------------------------------------------*");
+		System.out.println("*                   DEPOSITO                   *");
+		System.out.println("*----------------------------------------------*");
 		// valor validado com InputUtils
-		double value = InputUtils.readDouble(scanner, "Qual o valor que deseja depositar? ");
+		double value = InputUtils.readDouble(scanner, "Valor do depósito: ");
 
 		BankAccount account = bankService.findAccountByUser(user);
 		account.deposit(value);

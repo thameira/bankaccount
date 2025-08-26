@@ -18,13 +18,16 @@ public class GetExecutedOption implements ExecutedOption {
 	public void execute() {
 		BankAccount account = bankService.findAccountByUser(user);
 
-		double saldoDisponivel = account.getBalance();
+		System.out.println("\n*----------------------------------------------*");
+		System.out.println("*                     SALDO                    *");
+		System.out.println("*----------------------------------------------*");
+		System.out.printf("Titular.........: %s%n", user.getName());
+		System.out.printf("Conta...........: %s%n", account.getAccountNumber());
+		System.out.printf("Saldo...........: R$ %.2f%n", account.getBalance());
+
 		if (account instanceof SpecialAccount sa) {
-			saldoDisponivel += sa.getLimit();
+			System.out.printf("Limite..........: R$ %.2f%n", sa.getLimit());
+			System.out.printf("Saldo disponível: R$ %.2f%n", account.getBalance() + sa.getLimit());
 		}
-		System.out.println("\n>> CONSULTA SALDO <<");
-		System.out.printf("Titular: %s%n", user.getName());
-		System.out.printf("Conta: %s%n", account.getAccountNumber());
-		System.out.printf("Saldo disponível: %.2f%n", saldoDisponivel);
 	}
 }

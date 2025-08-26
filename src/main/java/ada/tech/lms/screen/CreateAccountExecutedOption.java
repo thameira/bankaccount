@@ -22,7 +22,9 @@ public class CreateAccountExecutedOption implements ExecutedOption {
 
 	@Override
 	public void execute() {
-		System.out.println("\n>> ABERTURA DE CONTA <<");
+        System.out.println("\n*----------------------------------------------*");
+        System.out.println("*              ABERTURA DE CONTA               *");
+        System.out.println("*----------------------------------------------*");
 
 		String cpf = InputUtils.readCpf(scanner); // aceita só números
 		scanner.nextLine(); // consome Enter do next()

@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("\n>>>>>>>>>>>>>>> Sistema Bancário <<<<<<<<<<<<<<<");
+
+		System.out.println("\n                SISTEMA BANCARIO                ");
 		showDisplayOptions(sc);
 	}
 
@@ -19,9 +20,9 @@ public class Main {
 		OptionService optionService = new OptionService(bankService, sc);
 
 		do {
-			System.out.println("\n*----------------------------------------------*");
+			System.out.println("\n*==============================================*");
 			System.out.println("*           Escolha a opção desejada           *");
-			System.out.println("*----------------------------------------------*");
+			System.out.println("*==============================================*");
 			for (ScreenOptions screenOption : ScreenOptions.values()) {
 				System.out.println(String.format("%d - %s",
 						screenOption.getOption(), screenOption.getOptionDescription()));

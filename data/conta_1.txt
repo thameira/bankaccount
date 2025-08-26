@@ -1,4 +1,0 @@
-tipo=Simples
-numeroConta=244322
-cpf=1
-saldo=108

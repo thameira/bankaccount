@@ -1,5 +1,0 @@
-tipo=Especial
-numeroConta=674717
-cpf=4
-saldo=0
-limite=0
